@@ -260,7 +260,7 @@ On failed (including authentication failure by $tag) the return value is undef.
 
 =head1 Examples
 
-L<tiny-rtsp-server|https://github.com/nabe-abk/tiny-rtsp-server> and L<example/|https://github.com/nabe-abk/Net-TinySRTP/example/> directory.
+L<tiny-rtsp-server|https://github.com/nabe-abk/tiny-rtsp-server> and L<example/|https://github.com/nabe-abk/Net-TinySRTP/tree/main/example> directory.
 
 
 
