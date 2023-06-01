@@ -197,7 +197,7 @@ Internal C code:
 
 =head2 Net::TinySRTP::X509Ptr methods
 
-=head3 $x509->fingerprint();
+=head3 my $bin = $x509->fingerprint();
 
 Get certificate's fingerprint binary data, using SHA256.
 
@@ -250,7 +250,7 @@ This function has the same behavior as Perl code in send_srtp_packet() of
 L<tiny-rtsp-server|https://github.com/nabe-abk/tiny-rtsp-server/blob/main/tiny-rtsp-server.pl>.
 
 
-=head3 $plain = aes_gcm_decrypt($key, $iv, $adata, $cipher, $tag);
+=head3 my $plain = aes_gcm_decrypt($key, $iv, $adata, $cipher, $tag);
 
 Authenticate input data with $tag and decrypt with $cipher.
 
