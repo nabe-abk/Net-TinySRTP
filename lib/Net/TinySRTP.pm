@@ -225,10 +225,10 @@ Return value is string, if success.
 On failed the return value is undef.
 
     my @key = $ssl->get_srtp_key_info();
-    my $client_srtp_key	 = aes_cm_kdf($key[0], $key[2], 0);
-    my $client_srtp_key	 = aes_cm_kdf($key[0], $key[2], 3, 12);
-    my $server_srtp_salt = aes_cm_kdf($key[1], $key[3], 0);
-    my $server_srtp_salt = aes_cm_kdf($key[1], $key[3], 3, 12);
+    my $client_srtp_key = aes_cm_kdf($key[0], $key[2], 0);
+    my $client_srtp_key = aes_cm_kdf($key[0], $key[2], 3, 12);
+    my $server_srtp_salt= aes_cm_kdf($key[1], $key[3], 0);
+    my $server_srtp_salt= aes_cm_kdf($key[1], $key[3], 3, 12);
 
 This function has the same behavior as Perl code in aes_cm_kdf() of 
 L<tiny-rtsp-server|https://github.com/nabe-abk/tiny-rtsp-server/blob/main/tiny-rtsp-server.pl>.
