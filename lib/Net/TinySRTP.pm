@@ -24,7 +24,7 @@ our @EXPORT_OK = ( @{ $EXPORT_TAGS{'all'} } );
 
 our @EXPORT    = ( @{ $EXPORT_TAGS{'all'} } );
 
-our $VERSION = '0.01';
+our $VERSION = '0.02';
 
 require XSLoader;
 XSLoader::load('Net::TinySRTP', $VERSION);
@@ -70,7 +70,7 @@ And provides the necessary encryption and decryption functions for SRTP (SRTP_AE
 
 Generate a private key of prime256v1 format.
 
-Return value is Net::TinySRTP::EVP_PKEYPtr object on success.
+Return value is Net::TinySRTP::EVP_PKEY object on success.
 On failed the return value is undef.
 
 =head3 my $x509 = make_cert($pubkey, $privkey, $days, \%subject);
@@ -82,14 +82,14 @@ Set the subject data of the signature in %subject.
     my $privkey = generate_ec_pkey();
     my $x509    = make_cert($privkey, $privkey, 30, { C=>'JP', CN => 'example.com' });
 
-Return value is Net::TinySRTP::X509Ptr object on success.
+Return value is Net::TinySRTP::X509 object on success.
 On failed the return value is undef.
 
 =head3 my $ssl = ssl_dtls_new(fileno($sock), $privkey, $x509);
 
 Create SSL object and initialize it for DTLS negotiation.
 
-Return value is Net::TinySRTP::SSLPtr object on success.
+Return value is Net::TinySRTP::SSL object on success.
 On failed the return value is undef.
 
 =head3 my $str = supported_SRTP_PROFILES();
@@ -104,7 +104,7 @@ This function use ERR_get_error() of OpenSSL.
 
 
 
-=head2 Net::TinySRTP::SSLPtr methods
+=head2 Net::TinySRTP::SSL methods
 
 =head3 my $ret = $ssl->connect($addr, $timeout_sec);
 
@@ -140,7 +140,7 @@ On failed (including timeout) the return value is undef.
 
 =head3 my $bin = $ssl->get_peer_certificate();
 
-Return value is peer's certificate Net::TinySRTP::X509Ptr object.
+Return value is peer's certificate Net::TinySRTP::X509 object.
 On failed the return value is undef.
 
 
@@ -195,7 +195,7 @@ Internal C code:
     connect(sock, (struct sockaddr *)addr, len);
 
 
-=head2 Net::TinySRTP::X509Ptr methods
+=head2 Net::TinySRTP::X509 methods
 
 =head3 my $bin = $x509->fingerprint();
 

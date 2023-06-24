@@ -131,15 +131,15 @@ X509*		T_PTROBJ_SP
 
 INPUT
 T_PTROBJ_SP
-	if (sv_derived_from($arg, \"Net::TinySRTP::$ntype\")){
+	if (sv_derived_from($arg, \"Net::TinySRTP::${\(substr($ntype,0,length($ntype)-3))}\")){
 		IV tmp = SvIV((SV*)SvRV($arg));
 		$var = INT2PTR($type, tmp);
 	}
 	else
-		croak(\"$var is not of type Net::TinySRTP::$ntype\");
+		croak(\"$var is not of type Net::TinySRTP::${\(substr($ntype,0,length($ntype)-3))}\");
 OUTPUT
 T_PTROBJ_SP
-	sv_setref_pv($arg, \"Net::TinySRTP::$ntype\", (void*)$var);
+	sv_setref_pv($arg, \"Net::TinySRTP::${\(substr($ntype,0,length($ntype)-3))}\", (void*)$var);
 TMAP
 
 ################################################################################
@@ -321,11 +321,11 @@ SSL *ssl_dtls_new(int sock_fd, EVP_PKEY *privkey, X509 *x509)
 ################################################################################
 # SSL object
 ################################################################################
-MODULE = Net::TinySRTP	PACKAGE = Net::TinySRTP::SSLPtr
+MODULE = Net::TinySRTP	PACKAGE = Net::TinySRTP::SSL
 
 void DESTROY(SSL *ssl)
 	CODE:
-        DEBUG_PRINT("*** SSLPtr::DESTROY\n")
+        DEBUG_PRINT("*** SSL::DESTROY\n")
 	if (ssl) SSL_free( ssl );
 
 #-------------------------------------------------------------------------------
@@ -627,11 +627,11 @@ void get_srtp_key_info(SSL *ssl)
 ################################################################################
 # X509 object
 ################################################################################
-MODULE = Net::TinySRTP	PACKAGE = Net::TinySRTP::X509Ptr
+MODULE = Net::TinySRTP	PACKAGE = Net::TinySRTP::X509
 
 void DESTROY(X509 *x509)
 	CODE:
-        DEBUG_PRINT("*** X509Ptr::DESTROY\n")
+        DEBUG_PRINT("*** X509::DESTROY\n")
 	if (x509) X509_free( x509 );
 
 void fingerprint(X509 *x509)
@@ -649,11 +649,11 @@ void fingerprint(X509 *x509)
 ################################################################################
 # Destroy
 ################################################################################
-MODULE = Net::TinySRTP	PACKAGE = Net::TinySRTP::EVP_PKEYPtr
+MODULE = Net::TinySRTP	PACKAGE = Net::TinySRTP::EVP_PKEY
 
 void DESTROY(EVP_PKEY *pkey)
 	CODE:
-        DEBUG_PRINT("*** EVP_PKEYPtr::DESTROY\n")
+        DEBUG_PRINT("*** EVP_PKEY::DESTROY\n")
 	if (pkey) EVP_PKEY_free( pkey );
 
 
